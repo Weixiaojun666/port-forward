@@ -14,13 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class ClientRequestHandler extends ChannelInboundHandlerAdapter {
+public class TcpForwardHandler extends ChannelInboundHandlerAdapter {
 
 
     private final ForwardMapping forwardMapping;
     private Channel remoteChannel;
 
-    public ClientRequestHandler(ForwardMapping forwardMapping) {
+    public TcpForwardHandler(ForwardMapping forwardMapping) {
         this.forwardMapping = forwardMapping;
     }
 

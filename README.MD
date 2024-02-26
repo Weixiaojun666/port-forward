@@ -4,9 +4,7 @@
 
 * 添加UDP转发功能
 * 添加Toml配置文件支持
-* 添加基础防护功能
 * 使用Java17+开发
-* 添加云防护功能【需配合服务器端】
 
 tcp/udp port forwarding based on netty / 基于Netty的TCP/UDP端口流量转发
 
@@ -28,3 +26,20 @@ this project will read config from java system properties and system env, proper
 * ioMaxBacklog, socket backlog default 64
 * openLoggingHandler, detail netty debug logging
 
+### port mapping file
+
+```toml
+[[forward]]
+name = "测试"
+type = "udp"
+localAddress = "localhost"
+localPort = 12345
+remoteAddress = "localhost"
+remotePort = 54321
+```
+
+### usage
+
+```shell
+java -jar port-forward-1.0.0.jar
+```

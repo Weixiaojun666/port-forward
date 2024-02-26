@@ -1,7 +1,7 @@
 package com.weiservers.portforward.thread;
 
-import com.weiservers.portforward.handlers.ClientRequestHandler;
 import com.weiservers.portforward.handlers.Handlers;
+import com.weiservers.portforward.handlers.TcpForwardHandler;
 import com.weiservers.portforward.mapping.ConfigMapping;
 import com.weiservers.portforward.mapping.ForwardMapping;
 import io.netty.bootstrap.ServerBootstrap;
@@ -44,7 +44,7 @@ public class TcpForwardThread extends Thread {
                     if (ConfigMapping.openLoggingHandler) {
                         pipeline.addFirst(Handlers.LOGGING_HANDLER);
                     }
-                    pipeline.addLast(new ClientRequestHandler(forwardMapping));
+                    pipeline.addLast(new TcpForwardHandler(forwardMapping));
                 }
             });
             //如果本地地址为localhost 则绑定所有地址
@@ -63,6 +63,4 @@ public class TcpForwardThread extends Thread {
             log.error("failed {}", forwardMapping, e);
         }
     }
-
-
 }

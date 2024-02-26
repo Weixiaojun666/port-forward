@@ -1,16 +1,3 @@
-[safety]
-#防护设置
-enable = true
-#限制单个IP连接数
-limitConnect = 100
-#限制单个IP连接频率（每秒）
-limitFrequency = 100
-
-[cloud]
-#云服务器设置 需要配置服务器使用
-enable = true
-server = "https://localhost"
-token = "123456"
 
 [[forward]]
 name = "测试"

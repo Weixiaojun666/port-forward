@@ -7,15 +7,13 @@ import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * data transfer between channels
  */
+@Slf4j
 public final class DataTransferHandler extends ChannelInboundHandlerAdapter {
-    private static final Logger LOG = LoggerFactory.getLogger(DataTransferHandler.class);
-
     private final Channel relayChannel;
 
     public DataTransferHandler(Channel relayChannel) {
@@ -45,13 +43,13 @@ public final class DataTransferHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
-        LOG.info("channel {} closed", ctx.channel());
+        log.info("channel {} closed", ctx.channel());
         ChannelUtils.closeOnFlush(relayChannel);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        LOG.error("data transfer handler occurs error, channel: {}", ctx.channel(), cause);
+        log.error("data transfer handler occurs error, channel: {}", ctx.channel(), cause);
         ctx.close();
     }
 
